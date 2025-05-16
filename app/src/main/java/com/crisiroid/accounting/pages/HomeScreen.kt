@@ -59,7 +59,6 @@ fun HomeScreen(
             .background(Color(0xFFF5F5F5)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Welcome Name", fontSize = 24.sp)
         Spacer(modifier = Modifier.weight(0.5f))
         Text(
             text = "Income",

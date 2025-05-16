@@ -201,7 +201,7 @@ fun RegisterScreen(
                             val response = apiService.register(
                                 RegisterRequest(fullName, ssn, username, password)
                             )
-                            if (response.code() == 200) {
+                            if (response.code() == 201) {
                                 val token = UUID.randomUUID().toString()
                                 tokenManager.saveToken(token)
                                 Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
