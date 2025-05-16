@@ -19,7 +19,7 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.Home.route,
+        startDestination = Routes.Splash.route,
         modifier = modifier
     ) {
         composable(Routes.Splash.route) {
@@ -52,10 +52,10 @@ fun NavGraph(
             HistoryScreen(navController)
         }
         composable(Routes.Login.route) {
-            LoginScreen()
+            LoginScreen(navController = navController)
         }
         composable(Routes.Register.route) {
-            RegisterScreen()
+            RegisterScreen(navController = navController)
         }
 
 
