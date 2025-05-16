@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.crisiroid.accounting.local.AppDatabase
+import com.crisiroid.accounting.local.TokenManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,7 +25,10 @@ import java.text.NumberFormat
 import java.util.*
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(
+    navController: NavHostController,
+    tokenManager: TokenManager = TokenManager(LocalContext.current)
+) {
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context)
     val coroutineScope = rememberCoroutineScope()
@@ -119,8 +123,15 @@ fun HomeScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 onClick = {
-                    val activity = context as? Activity
-                    activity?.finish()
+                    coroutineScope.launch {
+                        withContext(Dispatchers.IO) {
+                            tokenManager.removeToken()
+                        }
+                        withContext(Dispatchers.Main) {
+                            val activity = context as? Activity
+                            activity?.finish()
+                        }
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()

@@ -22,6 +22,7 @@ import com.crisiroid.accounting.api.RetrofitClient
 import kotlinx.coroutines.launch
 import java.util.UUID
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -232,6 +233,12 @@ fun RegisterScreen(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Login", color = Color(0xFF3F51B5), fontSize = 16.sp)
+        Text(text = "Login",
+            color = Color(0xFF3F51B5),
+            fontSize = 16.sp,
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(Routes.Login.route)
+                })
     }
 }

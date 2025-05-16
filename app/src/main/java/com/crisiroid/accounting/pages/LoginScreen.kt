@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 import android.widget.Toast
 import androidx.navigation.NavHostController
+import androidx.compose.foundation.clickable // Add this import
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -168,6 +169,14 @@ fun LoginScreen(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Register", color = Color(0xFF3F51B5), fontSize = 16.sp)
+        Text(
+            text = "Register",
+            color = Color(0xFF3F51B5),
+            fontSize = 16.sp,
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(Routes.Register.route)
+                }
+        )
     }
 }
